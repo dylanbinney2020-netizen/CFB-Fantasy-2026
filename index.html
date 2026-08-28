@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F6F7F9">
 <meta name="description" content="CFB Fantasy 2026 league hub. Lineups, live scoring, standings and playoffs.">
+
+<!-- ==========================================================================
+     HOME SCREEN / STANDALONE APP
+     These four files must sit in the repo NEXT TO index.html:
+       apple-touch-icon.png  icon-192.png  icon-512.png  icon-maskable-512.png
+       manifest.json
+     Every path here is RELATIVE on purpose. The site is served from
+     /CFB-Fantasy-2026/, so a leading slash would point at the domain root and
+     iOS would silently fall back to a screenshot of the page instead of the icon.
+     The icon cannot be inlined as a data URI: iOS rejects those for
+     apple-touch-icon, unlike the favicon above.
+     ========================================================================== -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="CFB Fantasy">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="application-name" content="CFB Fantasy">
 <meta property="og:title" content="CFB Fantasy 2026">
 <meta property="og:description" content="12 Managers. 138 FBS Teams. One Champion.">
 <meta property="og:type" content="website">
@@ -14,6 +34,18 @@
   html,body{margin:0;padding:0;background:#F6F7F9;}
   body{-webkit-text-size-adjust:100%;}
   #root{min-height:100vh;}
+  /* Launched from the Home Screen there is no Safari toolbar, so the iPhone
+     status bar and the home indicator sit ON TOP of the page. These pad around
+     them. They are zero in a normal browser tab, so nothing changes there. */
+  @supports (padding: env(safe-area-inset-top)) {
+    body { padding-top: env(safe-area-inset-top);
+           padding-bottom: env(safe-area-inset-bottom); }
+  }
+  /* Stop the whole page rubber-banding in standalone mode, which otherwise
+     reveals a blank strip above the content when you scroll up hard. */
+  @media (display-mode: standalone) {
+    html, body { overscroll-behavior-y: none; }
+  }
   .boot{color:#5A6675;font:500 14px/1.5 system-ui,sans-serif;text-align:center;padding:80px 20px;}
 </style>
 </head>
