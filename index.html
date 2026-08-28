@@ -8,17 +8,22 @@
 
 <!-- ==========================================================================
      HOME SCREEN / STANDALONE APP
-     These four files must sit in the repo NEXT TO index.html:
-       apple-touch-icon.png  icon-192.png  icon-512.png  icon-maskable-512.png
-       manifest.json
+     These five files must sit in the repo NEXT TO index.html:
+       icon-180-v2.png  icon-192-v2.png  icon-512-v2.png
+       icon-maskable-512-v2.png  manifest.json
      Every path here is RELATIVE on purpose. The site is served from
      /CFB-Fantasy-2026/, so a leading slash would point at the domain root and
      iOS would silently fall back to a screenshot of the page instead of the icon.
-     The icon cannot be inlined as a data URI: iOS rejects those for
-     apple-touch-icon, unlike the favicon above.
+     The icon cannot be inlined as a data URI: iOS rejects those for the Home
+     Screen icon, unlike the favicon above.
      ========================================================================== -->
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<!-- The icons carry a -v2 suffix because iOS caches Home Screen icons by URL and
+     will keep serving a stale one however hard you clear Safari. A filename it has
+     never requested cannot be cached, so renaming is more reliable than trying to
+     evict it. If the icon ever needs changing again, bump to -v3 rather than
+     overwriting the file in place. -->
+<link rel="apple-touch-icon" href="icon-180-v2.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180-v2.png">
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
