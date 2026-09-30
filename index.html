@@ -64,7 +64,11 @@
 <script>
   window.CFB_CONFIG = {
     supabaseUrl: "https://qxgqqkpfosuxxzcxekpw.supabase.co",
-    supabaseKey: "sb_publishable_83sdjbUdOoktxAlYlrXhXQ_TTAv6Jsz"
+    supabaseKey: "sb_publishable_83sdjbUdOoktxAlYlrXhXQ_TTAv6Jsz",
+    /* The PUBLIC half of the notification key pair. Safe to ship: it only lets
+       a browser subscribe. The private half lives in Supabase secrets and is
+       never served to anyone. */
+    vapidPublicKey: "BMmM70rs8twcT4Z7BUh1zNvLOQHGajZ9Wq8wBhmkYB6kLXgIzSllTJZfdhk-cOv5HoFwSu5aUNooc_5OBgePp9U"
   };
 </script>
 
@@ -561,5 +565,10 @@ lucide-react/dist/esm/lucide-react.mjs:
 */
 
 </script>
+
+<!-- Lineup notification enrolment. Deliberately OUTSIDE the React bundle, so
+     the app itself is untouched. Reads the same sessionStorage keys the app
+     already sets at login. -->
+<script src="push-enroll.js"></script>
 </body>
 </html>
